@@ -1,4 +1,4 @@
-# Sampled MuZero
+# SampleAI X0.1 MuZero
 
 A implementation of **Sampled MuZero** based on the [MuZero-General](https://github.com/werner-duvaud/muzero-general).
 
