@@ -1,0 +1,49 @@
+FROM continuumio/miniconda3:23.3.1-0
+
+# TODO(romilb): Investigate if this image can be consolidated with the skypilot
+#  client image (`Dockerfile`)
+
+# Initialize conda for root user, install ssh and other local dependencies
+RUN apt update -y && \
+    apt install gcc rsync sudo patch openssh-server pciutils nano fuse socat netcat curl -y && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt remove -y python3 && \
+    conda init
+
+# Setup SSH and generate hostkeys
+RUN mkdir -p /var/run/sshd && \
+    sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+    sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd && \
+    cd /etc/ssh/ && \
+    ssh-keygen -A
+
+# Setup new user named sky and add to sudoers. Also add /opt/conda/bin to sudo path.
+RUN useradd -m -s /bin/bash sky && \
+    echo "sky ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
+    echo 'Defaults        secure_path="/opt/conda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"' > /etc/sudoers.d/sky
+
+# Switch to sky user
+USER sky
+
+# Install SkyPilot pip dependencies preemptively to speed up provisioning time
+RUN pip install wheel Click colorama cryptography jinja2 jsonschema && \
+    pip install networkx oauth2client pandas pendulum PrettyTable && \
+    pip install ray[default]==2.9.3 rich tabulate filelock && \
+    pip install packaging 'protobuf<4.0.0' pulp && \
+    pip install pycryptodome==3.12.0 && \
+    pip install docker kubernetes==28.1.0 && \
+    pip install grpcio==1.51.3 python-dotenv==1.0.1
+
+# Add /home/sky/.local/bin/ to PATH
+RUN echo 'export PATH="$PATH:$HOME/.local/bin"' >> ~/.bashrc
+
+# Copy SkyPilot code base. This is required for the ssh jump pod to find the
+# lifecycle management scripts
+COPY --chown=sky . /skypilot/sky/
+
+# Set PYTHONUNBUFFERED=1 to have Python print to stdout/stderr immediately
+ENV PYTHONUNBUFFERED=1
+
+# Set WORKDIR and initialize conda for sky user
+WORKDIR /home/sky
+RUN conda init
