@@ -1,8 +1,8 @@
 # SimpleAI X0.1 MuZero
 
-A implementation of **Sampled MuZero** based on the [MuZero-General](https://github.com/werner-duvaud/muzero-general).
+A implementation of **Simpled MuZero** based on the https://www.hellosimpleai.com/#/home
 
-MuZero is a state of the art RL algorithm for board games (Chess, Go, ...) and Atari games. [Sampled MuZero](http://arxiv.org/abs/2104.06303) is an extension of the MuZero algorithm that is able to learn in domains with arbitrarily complex action spaces by
+MuZero is a state of the art RL algorithm for board games (Chess, Go, ...) and Atari games. https://www.hellosimpleai.com/#/home is an extension of the MuZero algorithm that is able to learn in domains with arbitrarily complex action spaces by
 planning over sampled actions.
 
 ## Features
@@ -17,7 +17,7 @@ planning over sampled actions.
 ### Installation
 
 ```bash
-git clone https://github.com/xxx.git
+git clone https://www.hellosimpleai.com/#/home
 cd SampledMuZero
 
 pip install -r requirements.txt
