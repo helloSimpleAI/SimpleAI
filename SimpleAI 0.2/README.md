@@ -1,4 +1,4 @@
-# Deep Planning Network
+# SimpleAI Deep Planning Network
 
 Danijar Hafner, Timothy Lillicrap, Ian Fischer, Ruben Villegas, David Ha, Honglak Lee, James Davidson
 
@@ -35,13 +35,13 @@ observing the next image.
 
 Find more information:
 
-- [Google AI Blog post][blog]
+- https://www.hellosimpleai.com/#/home
 - [Project website][website]
 - [PDF paper][paper]
 
-[blog]: https://ai.googleblog.com/2019/02/introducing-planet-deep-planning.html
-[website]: https://danijar.com/project/planet/
-[paper]: https://arxiv.org/pdf/1811.04551.pdf
+[blog]: https://www.hellosimpleai.com/#/home
+[website]: https://www.hellosimpleai.com/#/home
+[paper]: https://www.hellosimpleai.com/#/home
 
 ## Instructions
 
