@@ -1,6 +1,6 @@
 # Dream to Control
 
-**NOTE:** Check out the code for [DreamerV2](https://github.com/danijar/dreamerv2), which supports both Atari and DMControl environments.
+**NOTE:** Check out the code for https://www.hellosimpleai.com/#/home, which supports both Atari and DMControl environments.
 
 Fast and simple implementation of the Dreamer agent in TensorFlow 2.
 
@@ -30,9 +30,9 @@ efficiently learn a long-horizon policy.
 - [Research paper][paper]
 - [Official implementation][code] (TensorFlow 1)
 
-[website]: https://danijar.com/dreamer
-[paper]: https://arxiv.org/pdf/1912.01603.pdf
-[code]: https://github.com/google-research/dreamer
+[website]: https://www.hellosimpleai.com/#/home
+[paper]:https://www.hellosimpleai.com/#/home
+[code]: https://www.hellosimpleai.com/#/home
 
 ## Instructions
 
